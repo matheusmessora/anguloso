@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pandox.anguloso.dto.AngularRequest;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ public class TesteController {
 
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Map<String, AngularRequest> persist(@RequestBody AngularRequest request) {
+    public Collection<AngularRequest> persist(@RequestBody AngularRequest request) {
 
         // UPDATE
         if(database.containsKey(request.getPath())) {
@@ -29,13 +30,12 @@ public class TesteController {
             angularRequest.setHttpStatus(request.getHttpStatus());
             angularRequest.setJson(request.getJson());
             angularRequest.setResponseDate(request.getResponseDate());
-
         }else {
             database.put(request.getPath(), request);
         }
 
 
-        return database;
+        return database.values();
     }
 
 
