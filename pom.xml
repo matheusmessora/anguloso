@@ -228,9 +228,9 @@
                 <artifactId>maven-jetty-plugin</artifactId>
                 <version>6.1.25</version>
                 <configuration>
-                    <contextPath>/anguloso</contextPath>
+                    <contextPath>/</contextPath>
                     <scanIntervalSeconds>0</scanIntervalSeconds>
-                    <stopPort>8078</stopPort>
+                    <stopPort>8079</stopPort>
                     <stopKey>stopJetty</stopKey>
                     <connectors>
                         <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
