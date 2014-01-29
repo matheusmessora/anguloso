@@ -42,8 +42,11 @@ public class TesteController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index() {
 
-        return "redirect:/pages/anguloso.html";
+        return "redirect:/pages/mmm.html";
     }
+
+
+
 
 
 }

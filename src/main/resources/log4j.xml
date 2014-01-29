@@ -40,15 +40,15 @@
         <!--<appender-ref ref="HibernateAppender" />-->
     <!--</logger>-->
     <logger name="org.hibernate.hql">
-    <level value="DEBUG" />
+    <level value="WARN" />
     <appender-ref ref="HibernateAppender" />
     </logger>
     <logger name="org.hibernate.sql">
-    <level value="TRACE" />
+    <level value="WARN" />
     <appender-ref ref="HibernateAppender" />
     </logger>
     <logger name="org.hibernate.type" additivity="false">
-    <level value="TRACE" />
+    <level value="WARN" />
     <appender-ref ref="HibernateAppender" />
     </logger>
 
