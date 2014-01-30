@@ -18,7 +18,7 @@ public class SocketController {
 //    @SendTo("/topic/greetings")
     public HelloMessage greeting(HelloMessage message) throws Exception {
         System.out.println("CHEGOU MENSAGEM!!!!. message = " + message);
-        Thread.sleep(5000); // simulated delay
+        Thread.sleep(100); // simulated delay
 //        return new Greeting("Hello, " + message.getName() + "!");
 
         log.debug("CHEGOU MENSAGEM." + message);

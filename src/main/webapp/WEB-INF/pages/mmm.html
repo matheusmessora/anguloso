@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My HTML File</title>
 
+    <script src="http://cdn.pandox.com.br/app/lib/angular.js"></script>
     <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
     <script src="http://cdn.pandox.com.br/app/anguloso/stomp.js"></script>
     <!--<script src="http://cdn.pandox.com.br/app/anguloso/anguloso.js"></script>-->
@@ -20,7 +21,7 @@
         }
 
         function connect() {
-            var socket = new SockJS('/endpoint');
+            var socket = new SockJS('/socket/endpoint');
             console.log(socket);
 
             stompClient = Stomp.over(socket);
@@ -28,10 +29,10 @@
                 setConnected(true);
                 console.log('MMMMMMM Connected: ' + frame, frame);
                 stompClient.subscribe('/topic/opa', function(greeting){
-                    showGreeting(JSON.parse(greeting.body).content);
-                });
-                stompClient.subscribe('/topic/greetings', function(greeting){
-                    showGreeting(JSON.parse(greeting.body).content);
+                    console.log(greeting);
+                    console.log(JSON.parse(greeting.body));
+                    console.log("A" + angular.fromJson(greeting.body), angular.fromJson(greeting));
+                    showGreeting(JSON.parse(greeting.body));
                 });
             });
         }
@@ -44,14 +45,15 @@
 
         function sendName() {
             var name = document.getElementById('name').value;
-            stompClient.send("/app/opa", {}, JSON.stringify({ 'name': name }));
+            stompClient.send("/socket/app/opa", {}, JSON.stringify({ 'name': name }));
         }
 
         function showGreeting(message) {
+            console.log("GREEINTG:" + message, message);
             var response = document.getElementById('response');
             var p = document.createElement('p');
             p.style.wordWrap = 'break-word';
-            p.appendChild(document.createTextNode(message));
+            p.appendChild(document.createTextNode(message.name));
             response.appendChild(p);
         }
     </script>

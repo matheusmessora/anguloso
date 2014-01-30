@@ -28,10 +28,24 @@ server {
                 #proxy_set_header Host $host;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
-                proxy_pass http://127.0.0.1:15082/;
 
                 #Redirects cookie path used for JSESSIONID
                 proxy_cookie_path /root /;
+
+                proxy_pass http://127.0.0.1:15082/;
+        }
+
+        location /socket {
+                proxy_pass http://127.0.0.1:15082/;
+
+                # WebSocket support (nginx 1.4)
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+        }
+
+        location /topic {
+                proxy_pass http://127.0.0.1:15082/;
 
                 # WebSocket support (nginx 1.4)
                 proxy_http_version 1.1;
@@ -56,7 +70,7 @@ server {
 
     location / {
         rewrite ^(.*) http://pandox.com.br/#/abc$1 permanent;
-    }
+    }     
 }
 
 
@@ -69,5 +83,5 @@ server {
         proxy_set_header X-Forwarded-Server $host;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_pass http://pandox.com.br/#/abc/;
-    }
+    }     
 }
