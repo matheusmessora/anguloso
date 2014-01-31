@@ -22,9 +22,7 @@ public class TesteController {
     @ResponseBody
     public AngularRequest persist(@RequestBody AngularRequest request) {
 
-
-        System.out.println("operations = " + operations);
-
+        operations.save(request, "request");
 
 
         return request;
@@ -34,7 +32,7 @@ public class TesteController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index() {
 
-        return "redirect:/pages/mmm.html";
+        return "redirect:/pages/anguloso.html";
     }
 
 

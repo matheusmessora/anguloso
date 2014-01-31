@@ -1,5 +1,6 @@
 package pandox.anguloso.dto;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -7,7 +8,8 @@ import java.util.Date;
 @Document
 public class AngularRequest {
 
-    private Long id;
+    @Id
+    private String id;
 
     private String path;
     private Date requestDate;
@@ -15,11 +17,11 @@ public class AngularRequest {
     private int httpStatus;
     private String json;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
