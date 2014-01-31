@@ -1,14 +1,27 @@
 package pandox.anguloso.dto;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 
+@Document
 public class AngularRequest {
+
+    private Long id;
 
     private String path;
     private Date requestDate;
     private Date responseDate;
     private int httpStatus;
     private String json;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Date getRequestDate() {
         return requestDate;
@@ -53,9 +66,13 @@ public class AngularRequest {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("AngularRequest{");
-        sb.append("path='").append(path).append('\'');
+        sb.append("id=").append(id);
+        sb.append(", path='").append(path).append('\'');
+        sb.append(", requestDate=").append(requestDate);
+        sb.append(", responseDate=").append(responseDate);
+        sb.append(", httpStatus=").append(httpStatus);
+        sb.append(", json='").append(json).append('\'');
         sb.append('}');
         return sb.toString();
     }
-
 }
